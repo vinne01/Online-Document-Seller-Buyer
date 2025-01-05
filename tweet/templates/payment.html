@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full Page Styling */
+        body {
+            font-family: 'Baloo Bhai', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://images.pexels.com/photos/7621362/pexels-photo-7621362.jpeg?auto=compress&cs=tinysrgb&w=600'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Centering Container */
+        .payment-container {
+            background: rgba(0, 0, 0, 0.6); /* Slight transparent background */
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Payment Details */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Large Button Styling */
+        #rzp-button1 {
+            background-color: #F37254;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        /* Button Hover Effect */
+        #rzp-button1:hover {
+            background-color: #D15C3B;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            #rzp-button1 {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 14px;
+            }
+
+            #rzp-button1 {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h1><span style="color:red;">Proceed with Payment</span></h1>
+        <h3><span style="color: red;"> Description:</span> {{ tweet.description }}</h3>
+        <h3><span style="color:red;">Price</span>: ₹{{ amount }}</h3>
+
+        <form>
+            <button id="rzp-button1" ><span style="color:red:">Pay Now</span></button>
+        </form>
+    </div>
+
+    <script>
+        var options = {
+            "key": "rzp_test_kW8rMFTvHKTTSU", // Your Razorpay API key
+            "amount": "{{ amount|floatformat:2 }}00", // Amount in paise
+            "currency": "INR",
+            "order_id": "{{ order_id }}",  // Order ID from the backend
+            "name": "ApnaDocumentSeller",
+            "description": "Service Payment",
+            "image": "https://ik.imagekit.io/vinaymry/dcmt.jpg?updatedAt=1736096779908",  // Your logo URL
+            "callback_url": "/success/?tweet_id={{ tweet.id }}",  // URL to redirect after successful payment
+            "prefill": {
+                "name": "{{ user.username }}",
+                "email": "{{ user.email }}"
+            },
+            "theme": {
+                "color": "#F37254"
+            }
+        };
+        
+        var rzp1 = new Razorpay(options);
+        document.getElementById('rzp-button1').onclick = function(e) {
+            e.preventDefault();
+            rzp1.open();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f8c6d2; /* Light pink background color */
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #EDE7F6; /* White background for the form container */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+        border-radius: 0.25rem;
+    }
+    .btn-primary {
+        background-color: #ff69b4; /* Hot pink background color */
+        border-color: #ff69b4;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .btn-primary:hover {
+        background-color: yellow; /* Deep pink on hover */
+        border-color: #ff1493;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .login-header h2 {
+        color: #333;
+    }
+    .form-footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .form-footer a {
+        color: #ff69b4;
+    }
+    .form-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <div class="login-header">
+        <h2>Register Form</h2>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <div class="form-footer">
+        <p> Already have an account?</p>
+        <a href="{% url 'login' %}"><button class="btn btn-warning">Login Here</button></a>    
+        {% comment %} <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p> {% endcomment %}
+    </div>
+</div>
+
+{% endblock %}

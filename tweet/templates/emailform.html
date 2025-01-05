@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    
+    <!-- Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: yellow;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            border-radius: 4px;
+            box-shadow: none;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 4px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="{% url 'tweet_list' %}" class="btn btn-secondary back-button">Back</a>
+        <div class="form-header">
+            <h3>Contact/Feedback Form</h3>
+        </div>
+
+        <form method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter Username" required />
+            </div>
+
+            <div class="form-group">
+                <label for="class">Subject related to Website/Suggestion:</label>
+                <input type="text" id="class" name="class" class="form-control" placeholder="Enter subject related Website" required />
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Any suggestion to my Services:</label>
+                <textarea id="subject" name="subject" class="form-control" rows="4" placeholder="Your suggestion..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Any problem related to ApnaDocumentSeller issuue:</label>
+                <textarea id="message" name="message" class="form-control" rows="4" placeholder="Describe the problem..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-custom">Send</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

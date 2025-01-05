@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   <span style="color:yellow"> ApnaDocumentSeller</span>
+{% endblock %}
+
+{% block content %}
+<style>
+    .card{
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color:#EDE7F6;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    #card-img {
+        width: 100%; /* Ensure the image takes up the full width of the container */
+        height: 385px; /* Fixed height for the image */
+        object-fit: cover; /* Maintain aspect ratio and cover the space */
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    @media(max-width:480px){
+        .vinay{
+            margin:16px;
+        }
+        .vivek{
+            margin-top:-24px;
+        }
+    }
+</style>
+
+<h1 class="text-center mt-4"><span style="color:yellow"> ApnaDocumentSeller </span></h1>
+<a class="btn btn-primary mb-4 vinay" href="{% url 'tweet_create' %}">Add Document List</a>
+
+<div class="container">
+    <div class="row">
+        {% for tweet in tweets %}
+            <div class="col-md-6 mb-4">
+                <div class="card cards">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-user"></i>
+                            {{ tweet.user.username }}</h5>
+                        <h6 class="card-title"><span style="color: blue;">Document</span> {{ tweet.document }}</h6>
+                        {% if tweet.preview_image %}
+                            <img src="{{ tweet.preview_image.url }}" alt="Preview Image" class="img-fluid"id="card-img" >
+                        {% else %}
+                            <p>No preview available.</p>
+                        {% endif %}
+                        <h5 class="card-text"><span style="color: blue;">Description:</span> {{ tweet.description }}</h5>
+                        <h5 class="card-title"><span style="color: blue;">Price:</span> {{ tweet.price }}</h5>
+                        <h5 class="card-text"><span style="color: blue;">Email:</span> {{ tweet.email }}</h5>
+                        <h5 class="card-text"><span style="color: blue;">Contact:</span> {{ tweet.contact }}</h5>
+                        <h5 class="card-text"><span style="color: blue;">Status:</span> {{ tweet.status }} <span style="color:red;">Time:</span>{{ tweet.created_at }}</h5>
+
+                        {% if user.is_authenticated %}
+                        {% if tweet.user == user %}
+                                <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                            <br><br>
+                            {% comment %} <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a> {% endcomment %}
+                            <form action="/paywithrazorpay/" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="tweet_id" value="{{ tweet.id }}">
+                                <button type="submit" class="btn btn-success vivek">Proceed to Buy</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

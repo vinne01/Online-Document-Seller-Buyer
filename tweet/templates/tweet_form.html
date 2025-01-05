@@ -1,0 +1,106 @@
+{% extends "layout.html"%}
+
+{% block title %}
+ApnaDocumentSeller
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f8c6d2; /* Light pink background color */
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #EDE7F6; /* White background for the form container */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+        border-radius: 0.25rem;
+    }
+    .btn-warning {
+        background-color: #ffcc00; /* Bright yellow background color */
+        border-color: #ffcc00;
+    }
+    .btn-warning:hover {
+        background-color: #ffda44; /* Light yellow on hover */
+        border-color: #ffcc00;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    .form-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-header h2 {
+        color: #333;
+    }
+    .form-footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .form-footer a {
+        color: #ff69b4; /* Link color */
+    }
+    .form-footer a:hover {
+        text-decoration: underline;
+    }
+    {% comment %} #add media query {% endcomment %}
+    @media (max-width: 768px) {
+        /* Tablet-specific styles */
+        {% comment %} .container {
+            max-width: 600px; /* Adjust container size for tablets */
+        } {% endcomment %}
+
+        .btn-warning {
+            margin-bottom: 10px; /* Stack buttons on smaller screens */
+        }
+        
+        .btn{
+            margin:3px;
+            
+        }
+        .container {
+            max-width: 100%; /* Allow container to fill entire width on mobiles */
+        }
+       
+    }
+
+    @media (max-width: 576px) {
+        /* Mobile-specific styles */
+        .container {
+            max-width: 100%; /* Allow container to fill entire width on mobiles */
+        }
+
+        .form-header h2 {
+            font-size: 1.5rem; /* Adjust heading size for readability */
+        }
+      
+    }
+    
+</style>
+
+
+<h1 class="text-center mt-4"> ApnaDocumentSeller</h1>
+<br><br>
+<h2>{% if form.instance.pk %} 
+    Edit Document data
+    {% else %} 
+    Add Document data
+
+    {% endif %} 
+    <form method="post" enctype="multipart/form-data"
+    class="form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-warning submits" type="submit">Submit</button>
+
+</form>
+<a href="{% url 'tweet_list' %}"><button class="btn btn-warning backs">Back to Document List</button></a>
+</h2>
+
+{% endblock %}

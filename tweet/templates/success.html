@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Received</title>
+
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Baloo Bhai', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://images.pexels.com/photos/27553310/pexels-photo-27553310/free-photo-of-nature-plant-photography.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Button Styles */
+        .btn {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Download Links Styles */
+        .download-links {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+
+        .download-links a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-links a:hover {
+            background-color: #45a049;
+        }
+
+        /* Add icon next to download text */
+        .download-links a i {
+            margin-right: 8px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .btn, .download-links a {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .btn, .download-links a {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% comment %} <h1>Thanks, Your Payment Has Been Received!</h1>
+    <p><span style="color:yellow">We appreciate your payment. Your order is being processed.</span></p> {% endcomment %}
+
+    {% if document_url %}
+    <div class="download-links">
+        <h3><span style="color:yellow;">Download Your Document:</span></h3>
+        <a href="{{ document_url }}" download>
+            <i class="fas fa-download"></i><span style="color:white;">Click to Download Document</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if preview_image_url %}
+    <div class="download-links">
+        <h3><span style="color:yellow;">Download Preview Image:</span></h3>
+        <a href="{{ preview_image_url }}" download>
+            <i class="fas fa-download"></i><span style="color:white;">Click to Download Preview Image</span>
+        </a>
+    </div>
+    {% endif %}
+
+    <br><br>
+    <a href="/" class="btn"><span style="color:white;">Go to Home</span></a>
+
+</body>
+</html>
