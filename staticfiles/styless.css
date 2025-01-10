@@ -1,0 +1,52 @@
+.vinay{
+ margin-left: 14px;   
+}
+/* Default styles for all devices */
+.navbar-nav .nav-item {
+    margin-bottom: 10px; /* Default margin */
+}
+
+/* For mobile devices */
+@media (max-width: 576px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 15px; /* Increased margin for small devices */
+    }
+}
+
+/* For tablets */
+@media (min-width: 576px) and (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 12px; /* Adjusted margin for tablets */
+    }
+}
+
+/* For large devices */
+@media (min-width: 768px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 8px; /* Adjusted margin for larger screens */
+    }
+}
+
+/* Media query for small devices */
+
+/* Media query for small devices */
+@media (max-width: 768px) {
+    .btn-container {
+        display: flex;
+        justify-content: space-between; /* Space out buttons evenly */
+        flex-wrap: wrap; /* Allow wrapping if necessary */
+    }
+
+    .btn {
+        flex: 1; /* Allow buttons to take equal space */
+        margin: 15px; /* Margin between buttons */
+    }
+}
+
+/* add */
+.cards{
+    background-color: #ffd54f;
+}
+
+
+
