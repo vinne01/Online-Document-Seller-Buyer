@@ -84,7 +84,7 @@ DATABASES = {
 }
 
 #add external database
-DATABASES["default"]=dj_database_url.parse("postgresql://vinay_database_user:0LaKBoQhSeQHfNZRsbv9oGDxHkrXEaQW@dpg-cu0dab1u0jms73cvge0g-a.singapore-postgres.render.com/vinay_database")
+# DATABASES["default"]=dj_database_url.parse("postgresql://vinay_database_user:0LaKBoQhSeQHfNZRsbv9oGDxHkrXEaQW@dpg-cu0dab1u0jms73cvge0g-a.singapore-postgres.render.com/vinay_database")
 
 
 # Password validation
