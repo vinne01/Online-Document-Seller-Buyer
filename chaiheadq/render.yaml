@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: tweet
+    env: python
+    buildCommand: "./build.sh"  # Replace with the path to your deploy script
+    startCommand: "gunicorn chaiheadq.wsgi:application"
+    staticPaths:
+      - /static: staticfiles
+      - /media: media
