@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,6 +83,9 @@ DATABASES = {
     }
 }
 
+#add external database
+DATABASES["default"]=dj_database_url.parse("postgresql://vinay_database_user:0LaKBoQhSeQHfNZRsbv9oGDxHkrXEaQW@dpg-cu0dab1u0jms73cvge0g-a.singapore-postgres.render.com/vinay_database")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -122,7 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
